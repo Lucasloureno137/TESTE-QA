@@ -44,23 +44,6 @@ public class MensagemErroAuthTest {
     assertTrue(resposta.contains("Senha não atende aos critérios mínimos de segurança"));
   }
 
-  @Test
-  @DisplayName("Verifica se a mensagem de e-mail inválido é exibida corretamente")
-  void testMensagemErroEmailInvalidoSimples() throws Exception {
-    UserDTO user = new UserDTO();
-    user.setEmail("invalido.com");
-    user.setPassword("Senha123!");
-
-    MvcResult result = mockMvc.perform(
-        post("/auth/signup")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(user))
-    ).andReturn();
-
-    String resposta = result.getResponse().getContentAsString();
-
-    assertTrue(resposta.contains("E-mail inválido"));
-  }
 
   @Test
   @DisplayName("Verifica se a mensagem de e-mail inválido é exibida corretamente (vários casos)")
